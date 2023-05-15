@@ -14,5 +14,7 @@
     <hr>
     <p>
         <a href="/articles/new">Create article</a>
+        <a href="/entities/new">Create entity</a>
+        <a href="/entities">Entity page</a>
     </p>
 </@layout.header>

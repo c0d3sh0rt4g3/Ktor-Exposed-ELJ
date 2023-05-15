@@ -1,8 +1,10 @@
 package com.example.dao
 
 import com.example.dao.DatabaseFactory.dbQuery
+import com.example.models.Articles
 import com.example.models.Entity
 import com.example.models.Entities
+import kotlinx.coroutines.runBlocking
 import org.jetbrains.exposed.sql.*
 import org.jetbrains.exposed.sql.SqlExpressionBuilder.eq
 
@@ -19,7 +21,7 @@ class DAOEntityImpl : DAOEntity {
         Entities.selectAll().map(::resultRowToEntity)
     }
 
-    override suspend fun entity(id: String): Entity? = dbQuery {
+    override suspend fun entity(id: Int): Entity? = dbQuery {
         Entities
             .select { Entities.id eq id }
             .map(::resultRowToEntity)
@@ -44,7 +46,7 @@ class DAOEntityImpl : DAOEntity {
     }
 
     override suspend fun editEntity(
-        id: String,
+        id: Int,
         value: String,
         name: String,
         description: String,
@@ -60,7 +62,14 @@ class DAOEntityImpl : DAOEntity {
         } > 0
     }
 
-    override suspend fun deleteEntity(id: String): Boolean = dbQuery {
+    override suspend fun deleteEntity(id: Int): Boolean = dbQuery {
         Entities.deleteWhere { Entities.id eq id } > 0
+    }
+}
+val daoEntity: DAOEntity = DAOEntityImpl().apply {
+    runBlocking {
+        if(allEntities().isEmpty()) {
+            addNewEntity("Some value", "Some name", "Some description", "Some seasonID", 1)
+        }
     }
 }

@@ -1,6 +1,7 @@
 package com.example.plugins
 
 import com.example.dao.daoArticle
+import com.example.dao.daoEntity
 import io.ktor.server.routing.*
 import io.ktor.server.response.*
 import io.ktor.server.application.*
@@ -52,6 +53,55 @@ fun Application.configureRouting() {
                     "delete" -> {
                         daoArticle.deleteArticle(id)
                         call.respondRedirect("/articles")
+                    }
+                }
+            }
+        }
+        route("entities") {
+            get {
+                call.respond(FreeMarkerContent("indexEntity.ftl", mapOf("entities" to daoEntity.allEntities())))
+            }
+
+            get("new") {
+                call.respond(FreeMarkerContent("newEntity.ftl", model = null))
+            }
+
+            post {
+                val formParameters = call.receiveParameters()
+                val value = formParameters.getOrFail("value")
+                val name = formParameters.getOrFail("name")
+                val description = formParameters.getOrFail("description")
+                val seasonId = formParameters.getOrFail("seasonId")
+                val order = formParameters.getOrFail("order").toInt()
+                val entity = daoEntity.addNewEntity(value, name, description, seasonId, order)
+                call.respondRedirect("/entities/${entity?.id}")
+            }
+
+            get("{id}") {
+                val id = call.parameters.getOrFail<Int>("id").toInt()
+                call.respond(FreeMarkerContent("showEntity.ftl", mapOf("entity" to daoEntity.entity(id))))
+            }
+            get("{id}/edit") {
+                val id = call.parameters.getOrFail<Int>("id").toInt()
+                call.respond(FreeMarkerContent("editEntity.ftl", mapOf("entity" to daoEntity.entity(id))))
+            }
+            post("{id}") {
+                val id = call.parameters.getOrFail<Int>("id").toInt()
+                val formParameters = call.receiveParameters()
+                when (formParameters.getOrFail("_action")) {
+                    "update" -> {
+                        val formParameters = call.receiveParameters()
+                        val value = formParameters.getOrFail("value")
+                        val name = formParameters.getOrFail("name")
+                        val description = formParameters.getOrFail("description")
+                        val seasonId = formParameters.getOrFail("seasonId")
+                        val order = formParameters.getOrFail("order").toInt()
+                        daoEntity.editEntity(id, value, name, description, seasonId, order)
+                        call.respondRedirect("/entities/$id")
+                    }
+                    "delete" -> {
+                        daoEntity.deleteEntity(id)
+                        call.respondRedirect("/entities")
                     }
                 }
             }
