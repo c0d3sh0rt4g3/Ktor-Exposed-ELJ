@@ -1,6 +1,7 @@
 package com.example.dao
 
 import com.example.models.*
+import java.util.UUID
 
 interface DAOEntity {
     suspend fun allEntities(): List<Entity>
