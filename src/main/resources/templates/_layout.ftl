@@ -10,7 +10,8 @@
     <p><i>Powered by Ktor & Freemarker!</i></p>
     <hr>
     <#nested>
-    <a href="/">Back to the main page</a>
+    <a href="/">Back to the article page</a>
+    <a href="/entities">Back to the entity page</a>
     </body>
     </html>
 </#macro>

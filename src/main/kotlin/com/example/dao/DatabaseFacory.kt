@@ -11,10 +11,11 @@ object DatabaseFactory {
         val user = "user"
         val password = "user"
         val driverClassName = "org.h2.Driver"
-        val jdbcURL = "jdbc:h2:file:./build/db"
+        val jdbcURL = "jdbc:h2:./default"
         val database = Database.connect(jdbcURL, driverClassName, user, password)
         transaction(database) {
             SchemaUtils.create(Articles)
+            SchemaUtils.create(Entities)
         }
     }
     suspend fun <T> dbQuery(block: suspend () -> T): T =

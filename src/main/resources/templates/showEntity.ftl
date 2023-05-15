@@ -6,19 +6,19 @@
             Entity: ${entity.name}
         </h3>
         <p>
-            ${entity.id}
+            ID: ${entity.id}
         </p>
         <p>
-            ${entity.value}
+            Value: ${entity.value}
         </p>
         <p>
-            ${entity.seasonId}
+            Season ID: ${entity.seasonId}
         </p>
         <p>
-            ${entity.order}
+            Order: ${entity.order}
         </p>
         <p>
-            ${entity.description}
+            Description: ${entity.description}
         </p>
         <hr>
         <p>
