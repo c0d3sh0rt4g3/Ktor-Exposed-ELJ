@@ -16,7 +16,8 @@ class DAOEntityImpl : DAOEntity {
         name = row[Entities.name],
         description = row[Entities.description],
         seasonId = row[Entities.seasonId],
-        order = row[Entities.order]
+        order = row[Entities.order],
+        sectionId = row[Entities.sectionId]
     )
     override suspend fun allEntities(): List<Entity> = dbQuery {
         Entities.selectAll().map(::resultRowToEntity)
@@ -34,7 +35,8 @@ class DAOEntityImpl : DAOEntity {
         name: String,
         description: String,
         seasonId: String,
-        order: Int
+        order: Int,
+        sectionId: Int
     ): Entity? = dbQuery {
         val insertStatement = Entities.insert {
             it[Entities.value] = value
@@ -42,6 +44,7 @@ class DAOEntityImpl : DAOEntity {
             it[Entities.description] = description
             it[Entities.seasonId] = seasonId
             it[Entities.order] = order
+            it[Entities.sectionId] = sectionId
         }
         insertStatement.resultedValues?.singleOrNull()?.let(::resultRowToEntity)
     }
@@ -52,7 +55,8 @@ class DAOEntityImpl : DAOEntity {
         name: String,
         description: String,
         seasonId: String,
-        order: Int
+        order: Int,
+        sectionId: Int
     ): Boolean = dbQuery {
         Entities.update({ Entities.id eq id }) {
             it[Entities.value] = value
@@ -60,6 +64,7 @@ class DAOEntityImpl : DAOEntity {
             it[Entities.description] = description
             it[Entities.seasonId] = seasonId
             it[Entities.order] = order
+            it[Entities.sectionId] = sectionId
         } > 0
     }
 
@@ -70,7 +75,7 @@ class DAOEntityImpl : DAOEntity {
 val daoEntity: DAOEntity = DAOEntityImpl().apply {
     runBlocking {
         if(allEntities().isEmpty()) {
-            addNewEntity("Some value", "Some name", "Some description", "Some seasonID", 1)
+            addNewEntity("Some value", "Some name", "Some description", "Some seasonID", 1, 1)
         }
     }
 }

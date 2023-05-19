@@ -63,7 +63,7 @@ fun Application.configureRouting() {
             }
 
             get("new") {
-                call.respond(FreeMarkerContent("newEntity.ftl", model = null))
+                call.respond(FreeMarkerContent("newEntity.ftl", mapOf("article" to daoArticle.allArticles())))
             }
 
             post {
@@ -73,7 +73,8 @@ fun Application.configureRouting() {
                 val description = formParameters.getOrFail("description")
                 val seasonId = formParameters.getOrFail("seasonId")
                 val order = formParameters.getOrFail("order").toInt()
-                val entity = daoEntity.addNewEntity(value, name, description, seasonId, order)
+                val sectionId = formParameters.getOrFail("sectionid").toInt()
+                val entity = daoEntity.addNewEntity(value, name, description, seasonId, order, sectionId)
                 call.respondRedirect("/entities/${entity?.id}")
             }
 
@@ -96,7 +97,8 @@ fun Application.configureRouting() {
                         val description = formParameters.getOrFail("description")
                         val seasonId = formParameters.getOrFail("seasonId")
                         val order = formParameters.getOrFail("order").toInt()
-                        daoEntity.editEntity(id, value, name, description, seasonId, order)
+                        val sectionId = formParameters.getOrFail("sectionid").toInt()
+                        daoEntity.editEntity(id, value, name, description, seasonId, order, sectionId)
                         call.respondRedirect("/entities/$id")
                     }
                     "delete" -> {

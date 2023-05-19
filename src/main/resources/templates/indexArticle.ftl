@@ -4,7 +4,7 @@
     <#list articles?reverse as article>
         <div>
             <h3>
-                <a href="/articles/${article.id}">${article.title}</a>
+                <a href="/articles/${article.id}">Title: ${article.title}</a>
             </h3>
             <p>
                 ${article.body}

@@ -10,6 +10,7 @@
             <p>Season ID: ${entity.seasonId}</p>
             <p>Order: ${entity.order}</p>
             <p>Description: ${entity.value}</p>
+            <p>Section ID: ${entity.sectionId}</p>
         </div>
     </#list>
     <hr>
