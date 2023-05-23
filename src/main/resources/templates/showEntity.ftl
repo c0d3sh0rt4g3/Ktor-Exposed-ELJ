@@ -20,6 +20,9 @@
         <p>
             Description: ${entity.description}
         </p>
+        <p>
+            Section ID: ${entity.sectionId}
+        </p>
         <hr>
         <p>
             <a href="/entities/${entity.id}/edit">Edit entity</a>

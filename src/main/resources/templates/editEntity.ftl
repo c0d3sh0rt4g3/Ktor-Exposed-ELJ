@@ -1,8 +1,8 @@
 <#-- @ftlvariable name="entity" type="com.example.models.Entity" -->
+<#-- @ftlvariable name="articles" type="kotlin.collections.List<com.example.models.Article>" -->
 <#import "_layout.ftl" as layout />
 <@layout.header>
     <div>
-        val id: String, val value: String, val name: String, val description: String, val seasonId: String, val order: Int
         <h3>Edit entity</h3>
         <form action="/entities/${entity.id}" method="post">
             <p>
@@ -19,6 +19,14 @@
             </p>
             <p>
                 <textarea name="description">${entity.description}</textarea>
+            </p>
+            <select name="sectionID">
+                <#list articles? reverse as article>
+                    <option value="${article.id}" name="sectionId">${article.id}</option>
+                </#list>
+            </select>
+            <p>
+                <input type="submit" name="_action" value="update">
             </p>
         </form>
     </div>

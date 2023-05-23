@@ -71,6 +71,9 @@ class DAOEntityImpl : DAOEntity {
     override suspend fun deleteEntity(id: Int): Boolean = dbQuery {
         Entities.deleteWhere { Entities.id eq id } > 0
     }
+    override suspend fun getEntitiesBySectionId(id: Int):Entity? = dbQuery {
+        Entities.select{Entities.sectionId eq id}.map(::resultRowToEntity).singleOrNull()
+    }
 }
 val daoEntity: DAOEntity = DAOEntityImpl().apply {
     runBlocking {

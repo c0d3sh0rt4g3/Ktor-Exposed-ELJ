@@ -42,6 +42,7 @@ class DAOArticleImpl : DAOArticle {
     override suspend fun deleteArticle(id: Int): Boolean = dbQuery {
         Articles.deleteWhere { Articles.id eq id } > 0
     }
+
 }
 val daoArticle: DAOArticle = DAOArticleImpl().apply {
     runBlocking {

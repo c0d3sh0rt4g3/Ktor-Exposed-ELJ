@@ -17,7 +17,9 @@ fun Application.configureRouting() {
         }
         route("articles") {
             get {
-                call.respond(FreeMarkerContent("indexArticle.ftl", mapOf("articles" to daoArticle.allArticles())))
+                val id = call.parameters["id"]?.toInt()
+                val entity = id?.let { daoEntity.getEntitiesBySectionId(it) }
+                call.respond(FreeMarkerContent("indexArticle.ftl", mapOf("articles" to daoArticle.allArticles(), "entities" to listOf(entity))))
             }
 
             get("new") {
@@ -63,7 +65,7 @@ fun Application.configureRouting() {
             }
 
             get("new") {
-                call.respond(FreeMarkerContent("newEntity.ftl", mapOf("article" to daoArticle.allArticles())))
+                call.respond(FreeMarkerContent("newEntity.ftl", mapOf("articles" to daoArticle.allArticles())))
             }
 
             post {
@@ -84,14 +86,13 @@ fun Application.configureRouting() {
             }
             get("{id}/edit") {
                 val id = call.parameters.getOrFail<Int>("id").toInt()
-                call.respond(FreeMarkerContent("editEntity.ftl", mapOf("entity" to daoEntity.entity(id))))
+                call.respond(FreeMarkerContent("editEntity.ftl", mapOf("entity" to daoEntity.entity(id), "articles" to daoArticle.allArticles())))
             }
             post("{id}") {
                 val id = call.parameters.getOrFail<Int>("id").toInt()
                 val formParameters = call.receiveParameters()
                 when (formParameters.getOrFail("_action")) {
                     "update" -> {
-                        val formParameters = call.receiveParameters()
                         val value = formParameters.getOrFail("value")
                         val name = formParameters.getOrFail("name")
                         val description = formParameters.getOrFail("description")
