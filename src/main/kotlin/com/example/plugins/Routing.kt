@@ -17,9 +17,7 @@ fun Application.configureRouting() {
         }
         route("articles") {
             get {
-                val id = call.parameters["id"]?.toInt()
-                val entity = id?.let { daoEntity.getEntitiesBySectionId(it) }
-                call.respond(FreeMarkerContent("indexArticle.ftl", mapOf("articles" to daoArticle.allArticles(), "entities" to listOf(entity))))
+                call.respond(FreeMarkerContent("indexArticle.ftl", mapOf("articles" to daoArticle.allArticles())))
             }
 
             get("new") {

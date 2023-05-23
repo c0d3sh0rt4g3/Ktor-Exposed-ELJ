@@ -72,7 +72,10 @@ class DAOEntityImpl : DAOEntity {
         Entities.deleteWhere { Entities.id eq id } > 0
     }
     override suspend fun getEntitiesBySectionId(id: Int):Entity? = dbQuery {
-        Entities.select{Entities.sectionId eq id}.map(::resultRowToEntity).singleOrNull()
+        Entities
+            .select { Entities.sectionId eq id }
+            .map(::resultRowToEntity)
+            .singleOrNull()
     }
 }
 val daoEntity: DAOEntity = DAOEntityImpl().apply {
