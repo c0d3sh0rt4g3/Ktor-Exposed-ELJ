@@ -34,7 +34,7 @@ fun Application.configureRouting() {
 
             get("{id}") {
                 val id = call.parameters.getOrFail<Int>("id").toInt()
-                call.respond(FreeMarkerContent("showArticle.ftl", mapOf("article" to daoArticle.article(id))))
+                call.respond(FreeMarkerContent("showArticle.ftl", mapOf("article" to daoArticle.article(id), "entities" to daoEntity.getEntitiesBySectionId(id))))
             }
             get("{id}/edit") {
                 val id = call.parameters.getOrFail<Int>("id").toInt()
