@@ -1,6 +1,7 @@
 <#-- @ftlvariable name="articles" type="kotlin.collections.List<com.example.models.Article>" -->
 <#import "_layout.ftl" as layout />
 <@layout.header>
+    <h2>Articles:</h2>
     <#list articles?reverse as article>
         <div>
             <h3>
