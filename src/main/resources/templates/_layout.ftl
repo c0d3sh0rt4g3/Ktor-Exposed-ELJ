@@ -3,7 +3,7 @@
     <html lang="en">
     <head>
         <title>Kotlin Journal</title>
-        <script src="js/deleteEntities.js"></script>
+        <script src="./js/deleteEntities.js"></script>
     </head>
     <body style="text-align: center; font-family: sans-serif">
     <img src="https://raw.githubusercontent.com/ktorio/ktor-documentation/2.3.0/codeSnippets/snippets/tutorial-website-static/src/main/resources/files/ktor_logo.png">

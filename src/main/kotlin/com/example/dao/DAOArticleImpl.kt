@@ -44,10 +44,3 @@ class DAOArticleImpl : DAOArticle {
     }
 
 }
-val daoArticle: DAOArticle = DAOArticleImpl().apply {
-    runBlocking {
-        if(allArticles().isEmpty()) {
-            addNewArticle("The drive to develop!", "...it's what keeps me going.")
-        }
-    }
-}

@@ -1,15 +1,29 @@
 package com.example.plugins
 
-import com.example.dao.daoArticle
-import com.example.dao.daoEntity
+import com.example.dao.*
 import io.ktor.server.routing.*
 import io.ktor.server.response.*
 import io.ktor.server.application.*
 import io.ktor.server.freemarker.*
 import io.ktor.server.request.*
 import io.ktor.server.util.*
+import kotlinx.coroutines.runBlocking
 
 fun Application.configureRouting() {
+    val daoArticle: DAOArticle = DAOArticleImpl().apply {
+        runBlocking {
+            if(allArticles().isEmpty()) {
+                addNewArticle("The drive to develop!", "...it's what keeps me going.")
+            }
+        }
+    }
+    val daoEntity: DAOEntity = DAOEntityImpl().apply {
+        runBlocking {
+            if(allEntities().isEmpty()) {
+                addNewEntity("Some value", "Some name", "Some description", "Some seasonID", 1, 1)
+            }
+        }
+    }
     routing {
         // ...
         get("/") {

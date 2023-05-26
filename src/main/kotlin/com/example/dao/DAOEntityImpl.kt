@@ -77,10 +77,3 @@ class DAOEntityImpl : DAOEntity {
             .map(::resultRowToEntity)
     }
 }
-val daoEntity: DAOEntity = DAOEntityImpl().apply {
-    runBlocking {
-        if(allEntities().isEmpty()) {
-            addNewEntity("Some value", "Some name", "Some description", "Some seasonID", 1, 1)
-        }
-    }
-}

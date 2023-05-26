@@ -1,3 +1,3 @@
 function confirmationMsg(){
-    return confirm("Are you sure you want to delete this element?")
+    return confirm("Are you sure you want to delete this element?");
 }
