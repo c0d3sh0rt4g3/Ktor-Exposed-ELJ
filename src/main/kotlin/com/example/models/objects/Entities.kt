@@ -1,4 +1,4 @@
-package objects
+package com.example.models.objects
 
 import org.jetbrains.exposed.sql.ReferenceOption
 import org.jetbrains.exposed.sql.Table

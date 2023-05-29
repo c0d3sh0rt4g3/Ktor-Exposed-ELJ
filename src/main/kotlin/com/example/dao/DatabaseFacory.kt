@@ -1,8 +1,8 @@
 package com.example.dao
 
 import kotlinx.coroutines.*
-import objects.Articles
-import objects.Entities
+import com.example.models.objects.Articles
+import com.example.models.objects.Entities
 import org.jetbrains.exposed.sql.*
 import org.jetbrains.exposed.sql.transactions.*
 import org.jetbrains.exposed.sql.transactions.experimental.*

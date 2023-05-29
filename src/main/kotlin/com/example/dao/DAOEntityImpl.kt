@@ -2,7 +2,7 @@ package com.example.dao
 
 import com.example.dao.DatabaseFactory.dbQuery
 import com.example.models.dataclasses.Entity
-import objects.Entities
+import com.example.models.objects.Entities
 import org.jetbrains.exposed.sql.*
 import org.jetbrains.exposed.sql.SqlExpressionBuilder.eq
 
