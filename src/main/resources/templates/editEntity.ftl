@@ -31,7 +31,7 @@
         </form>
     </div>
     <div>
-        <form action="/entities/${entity.id}" method="post">
+        <form action="/entities/${entity.id}" method="post" onsubmit="return confirmationMsg();">
             <p>
                 <input type="submit" name="_action" value="delete">
             </p>

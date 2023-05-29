@@ -3,7 +3,11 @@
     <html lang="en">
     <head>
         <title>Kotlin Journal</title>
-        <script type="text/javascript" src="./js/deleteEntities.js"></script>
+        <script>
+            function confirmationMsg(){
+                return confirm("Are you sure you want to delete this element?");
+            }
+        </script>
     </head>
     <body style="text-align: center; font-family: sans-serif">
     <img alt="ktor logo" src="https://raw.githubusercontent.com/ktorio/ktor-documentation/2.3.0/codeSnippets/snippets/tutorial-website-static/src/main/resources/files/ktor_logo.png">

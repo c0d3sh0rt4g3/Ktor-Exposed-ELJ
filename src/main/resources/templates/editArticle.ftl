@@ -16,7 +16,7 @@
         </form>
     </div>
     <div>
-        <form action="/articles/${article.id}" method="post" onsubmit="return confirm('Are you sure you want to delete this element?');">
+        <form action="/articles/${article.id}" method="post" onsubmit="return confirmationMsg();">
             <p>
                 <input type="submit" name="_action" value="delete">
             </p>
