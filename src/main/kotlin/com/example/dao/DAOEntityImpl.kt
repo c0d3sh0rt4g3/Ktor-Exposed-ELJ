@@ -1,13 +1,10 @@
 package com.example.dao
 
 import com.example.dao.DatabaseFactory.dbQuery
-import com.example.models.Articles
 import com.example.models.Entity
 import com.example.models.Entities
-import kotlinx.coroutines.runBlocking
 import org.jetbrains.exposed.sql.*
 import org.jetbrains.exposed.sql.SqlExpressionBuilder.eq
-import java.util.UUID
 
 class DAOEntityImpl : DAOEntity {
     private fun resultRowToEntity(row: ResultRow) = Entity(
