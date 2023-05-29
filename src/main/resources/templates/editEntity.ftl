@@ -1,5 +1,5 @@
-<#-- @ftlvariable name="entity" type="com.example.models.Entity" -->
-<#-- @ftlvariable name="articles" type="kotlin.collections.List<com.example.models.Article>" -->
+<#-- @ftlvariable name="entity" type="com.example.models.dataclasses.Entity" -->
+<#-- @ftlvariable name="articles" type="kotlin.collections.List<com.example.models.dataclasses.Article>" -->
 <#import "_layout.ftl" as layout />
 <@layout.header>
     <div>

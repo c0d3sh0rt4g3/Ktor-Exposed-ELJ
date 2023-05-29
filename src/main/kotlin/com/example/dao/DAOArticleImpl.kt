@@ -1,8 +1,8 @@
 package com.example.dao
 
 import com.example.dao.DatabaseFactory.dbQuery
-import com.example.models.Article
-import com.example.models.Articles
+import com.example.models.dataclasses.Article
+import objects.Articles
 import org.jetbrains.exposed.sql.*
 import org.jetbrains.exposed.sql.SqlExpressionBuilder.eq
 

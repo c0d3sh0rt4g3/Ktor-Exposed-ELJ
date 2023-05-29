@@ -1,4 +1,4 @@
-<#-- @ftlvariable name="entity" type="com.example.models.Entity" -->
+<#-- @ftlvariable name="entity" type="com.example.models.dataclasses.Entity" -->
 <#import "_layout.ftl" as layout />
 <@layout.header>
     <div>

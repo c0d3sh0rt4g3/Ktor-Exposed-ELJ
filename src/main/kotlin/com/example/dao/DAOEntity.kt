@@ -1,6 +1,6 @@
 package com.example.dao
 
-import com.example.models.*
+import com.example.models.dataclasses.Entity
 
 interface DAOEntity {
     suspend fun allEntities(): List<Entity>

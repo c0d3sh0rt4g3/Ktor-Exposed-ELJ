@@ -1,4 +1,4 @@
-<#-- @ftlvariable name="entities" type="kotlin.collections.List<com.example.models.Entity>" -->
+<#-- @ftlvariable name="entities" type="kotlin.collections.List<com.example.models.dataclasses.Entity>" -->
 <#import "_layout.ftl" as layout />
 <@layout.header>
     <h2>Entities:</h2>
