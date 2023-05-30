@@ -13,8 +13,8 @@ import io.ktor.server.util.*
 fun Application.configureRouting() {
 
     routing {
-        static("/js") {
-            resources("static/js")
+        static("/static") {
+            resources("js")
         }
         get("/") {
             call.respondRedirect("articles")
